@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3",
+    "mocha-junit-reporter": "1.13.0",
+    "saucelabs": "^1.4.0",
+    "selenium-webdriver": "^3.3.0",
+    "xunit-file": "~0.0.7"
+  }
+}
