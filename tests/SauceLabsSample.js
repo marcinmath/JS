@@ -1,4 +1,6 @@
-var webdriver = require('selenium-webdriver'),
+var assert = require('assert'),
+    test = require('selenium-webdriver/testing'),
+    webdriver = require('selenium-webdriver'),
     username = process.env.SAUCE_USERNAME,
     accessKey = process.env.SAUCE_ACCESS_KE,
     driver;
