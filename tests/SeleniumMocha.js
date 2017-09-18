@@ -9,6 +9,7 @@ test.describe('Google Search', function() {
         // var driver = new webdriver.Builder().
         // withCapabilities(webdriver.Capabilities.chrome()).
         // build();
+        console.log(process.env.USER);
         var driver = new webdriver.Builder().
         withCapabilities({
             'browserName': 'chrome',
