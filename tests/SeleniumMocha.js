@@ -1,33 +1,63 @@
 var assert = require('assert'),
     test = require('selenium-webdriver/testing'),
     webdriver = require('selenium-webdriver'),
+    SauceLabs = require("saucelabs"),
     username = process.env.SAUCE_USERNAME,
-    accessKey = process.env.SAUCE_ACCESS_KEY;
+    accessKey = process.env.SAUCE_ACCESS_KEY,
+    saucelabs = new SauceLabs({
+      username: username,
+      password: accessKey
+    });
 
 test.describe('Google Search', function() {
-    test.it('should work', function() {
-        // var driver = new webdriver.Builder().
-        // withCapabilities(webdriver.Capabilities.chrome()).
-        // build();
-        console.log(process.env.USER);
-        var driver = new webdriver.Builder().
-        withCapabilities({
-            'browserName': 'chrome',
-            'platform': 'Linux',
-            'version': '43.0',
-            'username': username,
-            'accessKey': accessKey,
-            'name': ' Sample selenium test'
-        }).
-        usingServer("http://" + username + ":" + accessKey +
-            "@ondemand.saucelabs.com:80/wd/hub").
-        build();
-        driver.get('http://www.google.com');
-        var searchBox = driver.findElement(webdriver.By.name('q'));
-        searchBox.sendKeys('simple programmer');
-        searchBox.getAttribute('value').then(function(value) {
-            assert.equal(value, 'simple programmer');
-        });
-        driver.quit();
+  this.timeout(60000);
+
+  var driver;
+
+  test.beforeEach(function() {
+    var browser = process.env.BROWSER,
+        version = process.env.VERSION,
+        platform = process.env.PLATFORM,
+        server = "http://" + username + ":" + accessKey + 
+                  "@ondemand.saucelabs.com:80/wd/hub"; 
+
+    driver = new webdriver.Builder().
+      withCapabilities({
+        'browserName': browser,
+        'platform': platform,
+        'version': version,
+        'username': username,
+        'accessKey': accessKey
+      }).
+      usingServer(server).
+      build();
+
+    driver.getSession().then(function (sessionid){
+      driver.sessionID = sessionid.id_;
     });
+
+  });
+
+  test.afterEach(function(done) {
+    var title = this.currentTest.title,
+        passed = (this.currentTest.state === 'passed') ? true : false;
+
+    driver.quit();
+
+    saucelabs.updateJob(driver.sessionID, {
+      name: title,
+      passed: passed
+    }, done);
+  })
+
+  test.it('searching for webdriver using google', function() {
+    driver.get('http://google.com');
+
+    var searchBox = driver.findElement(webdriver.By.name('q'));
+    searchBox.sendKeys('webdriver');
+    searchBox.getAttribute('value').then(function(value) {
+      assert.equal(value, 'webdriver');
+    });
+
+  });
 });
