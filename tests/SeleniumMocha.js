@@ -1,8 +1,8 @@
 var assert = require('assert'),
     test = require('selenium-webdriver/testing'),
     webdriver = require('selenium-webdriver'),
-    username = "mzalew",
-    accessKey = "6af6f5db-c2be-4271-885f-23a9e013fc54";
+    username = process.env.SAUCE_USERNAME,
+    accessKey = process.env.SAUCE_ACCESS_KEY;
 
 test.describe('Google Search', function() {
     test.it('should work', function() {
