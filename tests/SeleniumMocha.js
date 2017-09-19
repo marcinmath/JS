@@ -23,7 +23,7 @@ test.describe('Google Search', function() {
 
     driver = new webdriver.Builder().
       withCapabilities({
-        'browserName': "",
+        'browserName': browser,
         'platform': platform,
         'version': version,
         'username': username,
@@ -52,7 +52,6 @@ test.describe('Google Search', function() {
 
   test.it('searching for webdriver using google', function() {
     driver.get('http://google.com');
-
     var searchBox = driver.findElement(webdriver.By.name('q'));
     searchBox.sendKeys('webdriver');
     searchBox.getAttribute('value').then(function(value) {
