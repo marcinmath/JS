@@ -13,6 +13,7 @@ test.describe('Google Search', function() {
   this.timeout(60000);
 
   var driver;
+  console.log("Used browser is: " +process.env.BROWSER);
 
   test.beforeEach(function() {
     var browser = 'chrome', //process.env.BROWSER,
