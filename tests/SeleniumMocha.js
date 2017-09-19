@@ -16,7 +16,7 @@ test.describe('Google Search', function() {
   console.log("Used browser is: " +process.env.BROWSER);
 
   test.beforeEach(function() {
-    var browser = 'chrome', //process.env.BROWSER,
+    var browser = '', //process.env.BROWSER,
         version = '45.0', //process.env.VERSION,
         platform = 'Windows 8',//process.env.PLATFORM,
         server = "http://" + username + ":" + accessKey + 
