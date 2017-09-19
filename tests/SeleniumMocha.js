@@ -13,12 +13,11 @@ test.describe('Google Search', function() {
   this.timeout(60000);
 
   var driver;
-  console.log("Used browser is: " +process.env.BROWSER);
 
   test.beforeEach(function() {
-    var browser = process.env.BROWSER, //process.env.BROWSER,
-        version = process.env.VERSION, //process.env.VERSION,
-        platform = process.env.PLATFORM,//process.env.PLATFORM,
+    var browser = process.env.BROWSER,
+        version = process.env.VERSION,
+        platform = process.env.PLATFORM,
         server = "http://" + username + ":" + accessKey + 
                   "@ondemand.saucelabs.com:80/wd/hub"; 
 
