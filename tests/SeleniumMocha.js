@@ -15,9 +15,9 @@ test.describe('Google Search', function() {
   var driver;
 
   test.beforeEach(function() {
-    var browser = process.env.BROWSER,
-        version = process.env.VERSION,
-        platform = process.env.PLATFORM,
+    var browser = 'chrome', //process.env.BROWSER,
+        version = 45, //process.env.VERSION,
+        platform = 'Windows 8',//process.env.PLATFORM,
         server = "http://" + username + ":" + accessKey + 
                   "@ondemand.saucelabs.com:80/wd/hub"; 
 
