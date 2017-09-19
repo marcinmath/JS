@@ -21,7 +21,7 @@ test.describe('Google Search', function() {
         server = "http://" + username + ":" + accessKey + 
                   "@ondemand.saucelabs.com:80/wd/hub"; 
 
-    driver = new global.webdriver.Builder().
+    driver = new webdriver.Builder().
       withCapabilities({
         'browserName': browser,
         'platform': platform,
