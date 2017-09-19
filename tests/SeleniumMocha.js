@@ -16,7 +16,7 @@ test.describe('Google Search', function() {
   console.log("Used browser is: " +process.env.BROWSER);
 
   test.beforeEach(function() {
-    var browser = '', //process.env.BROWSER,
+    var browser = process.env.BROWSER, //process.env.BROWSER,
         version = '45.0', //process.env.VERSION,
         platform = 'Windows 8',//process.env.PLATFORM,
         server = "http://" + username + ":" + accessKey + 
@@ -24,7 +24,7 @@ test.describe('Google Search', function() {
 
     driver = new global.webdriver.Builder().
       withCapabilities({
-        'browserName': browser,
+        'browserName': "",
         'platform': platform,
         'version': version,
         'username': username,
