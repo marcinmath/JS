@@ -23,7 +23,7 @@ test.describe('Google Search', function() {
 
     driver = new webdriver.Builder().
       withCapabilities({
-        'browserName': browser,
+        'browserName': "",
         'platform': platform,
         'version': version,
         'username': username,
